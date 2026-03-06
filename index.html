@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的简历展示网站 - 程安安</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .image-item {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .pdf-section {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .pdf-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin: 8px;
+        }
+        .pdf-download-btn:hover {
+            background: #0f172a;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="app"></div>
+
+    <script>
+        // 初始化数据
+        let resumes = [
+            {
+                id: 1,
+                title: "AI产品运营",
+                company: "字节跳动 / 小红书",
+                date: "2024.06 - 至今",
+                summary: "AI商业化研究与AIGC行业深度调研，系统梳理AI技术B端落地应用场景",
+                jd: `工作职责：
+• AI商业化研究：主导火山引擎AIGC行业深度调研，系统梳理AI技术在B端商业化落地的应用场景，为业务方提供技术趋势与竞品分析支持。
+• 平台策略输出：为字节跳动（巨量引擎、抖音生活服务）、小红书提供商业化策略支持，主导编写《小红书线索经营通案》、《千帆推广通案》等官方标准课件，赋能全量销售团队与广告主。
+• 全球营销洞察：负责小红书全球时装周营销调研，通过对奢品/时尚行业的深度扫描，产出行业峰会核心策略内容，定义平台级商业化营销通案。
+
+核心能力：
+- 行业研究与深度分析
+- 商业化策略制定
+- 平台级项目管理
+- 跨部门协同`,
+                tags: ["AI商业化", "策略运营", "行业研究", "AIGC"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+1",
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+2",
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+3"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_AI_Product_ByteDance.pdf"
+            },
+            {
+                id: 2,
+                title: "品牌市场运营",
+                company: "山中天艺术中心",
+                date: "2024.05 - 2025.05",
+                summary: "AI+艺术跨界策划，敏锐捕捉技术趋势，策划AI艺术展览，提升Gen-Z影响力",
+                jd: `工作职责：
+• AI+艺术跨界：敏锐捕捉AI艺术创作趋势，策划并执行AI技术相关艺术展览，将前沿技术转化为可感知的品牌文化IP
+• 全链路AI产出：主导利用Midjourney、Runway等AIGC工具完成从策略、创意到海报及AI动画视频的全流程制作
+• 资源整合与破圈：在0预算投入下，通过资源置换达成奔驰、三里屯太古里等跨界合作，实现品牌人群精准破圈
+• IP孵化：战略性孵化"windYoung"艺术IP，通过深度洞察青年文化，构建高粘性的艺术家生态社区
+
+核心能力：
+- 创意策划与执行
+- AI内容生产（Midjourney、Runway）
+- 品牌跨界合作
+- 社群生态运营`,
+                tags: ["品牌运营", "AI创意", "项目管理", "内容策划"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+1",
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+2",
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+3"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_Brand_Marketing_ArtCenter.pdf"
+            },
+            {
+                id: 3,
+                title: "品牌战略咨询顾问",
+                company: "兆世原咨询机构",
+                date: "2024.06 - 至今",
+                summary: "战略咨询与行业研究，深度分析行业趋势，为企业提供商业化落地方案",
+                jd: `工作职责：
+• 行业深度研究：针对青少年AI教育赛道进行深度市场扫描，分析AI技术在科普教育场景下的交互潜力与商业化路径
+• 方案设计：产出详尽的展厅升级与教育产品方案，体现对AI领域趋势的精准判断及复杂项目的全局规划能力
+• 战略建议：为联想未来中心青少年AI教育战略提案，作为战略顾问支持Case Study开发
+• 技术落地探索：深度研究AI技术在商业化传播中的应用边界
+
+核心能力：
+- 战略分析与建议
+- 市场研究
+- 方案设计
+- 行业趋势判断`,
+                tags: ["战略咨询", "市场研究", "AI教育", "商业分析"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+1",
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+2",
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+3"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_Strategy_Consulting_ZhaoshiYuan.pdf"
+            },
+            {
+                id: 4,
+                title: "硕士研究生 | 广告学（品牌传播方向）",
+                company: "中国传媒大学",
+                date: "2021.09 - 2024.06",
+                summary: "双一流学科排名A+，深耕品牌传播理论与实践研究",
+                jd: `学位：广告学硕士（品牌传播方向）
+学校：中国传媒大学（双一流，学科排名A+）
+研究方向：品牌传播、数字营销、AI与创意
+
+学术背景为后续从事品牌运营、营销策略、产品运营等工作奠定了坚实的理论与实践基础`,
+                tags: ["品牌传播", "广告学", "双一流", "学术研究"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=CUC+Master+1",
+                    "https://via.placeholder.com/600x400?text=CUC+Master+2"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_Master_CUC.pdf"
+            }
+        ];
+
+        let searchTerm = "";
+        let selectedResume = null;
+        let showUploadForm = false;
+        let formData = {
+            title: "",
+            company: "",
+            date: "",
+            summary: "",
+            jd: "",
+            tags: ""
+        };
+
+        // 渲染函数
+        function render() {
+            const filteredResumes = resumes.filter(r =>
+                r.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                r.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                r.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+            );
+
+            const app = document.getElementById("app");
+            app.innerHTML = `
+                <div class="min-h-screen bg-white">
+                    <!-- 头部 -->
+                    <header class="border-b border-slate-200 sticky top-0 bg-white/95 backdrop-blur-sm">
+                        <div class="max-w-7xl mx-auto px-6 py-8">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h1 class="text-4xl font-bold text-slate-900 mb-2">我的职业探索之旅</h1>
+                                    <p class="text-slate-500">${resumes.length} 个职位方向 • AI产品运营 / 品牌市场 / 出海营销</p>
+                                </div>
+                                <button class="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-6 py-3 rounded-lg font-semibold transition-all" onclick="toggleUploadForm()">
+                                    <span>➕</span>
+                                    添加简历
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- 个人信息卡片 -->
+                    <div class="max-w-7xl mx-auto px-6 py-4">
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 flex items-center justify-between">
+                            <div>
+                                <h2 class="text-2xl font-bold text-slate-900">程安安 Anna Cheng</h2>
+                                <p class="text-slate-600 mt-1">中传广告学本硕 | AI营销先行者 | 7年专业背景</p>
+                                <p class="text-slate-500 text-sm mt-2">📧 buanancheng@gmail.com | 📱 18757186233</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-slate-600 text-sm"><strong>核心方向：</strong></p>
+                                <p class="text-slate-500 text-sm">AI产品运营 / 品牌市场部 / 出海营销策略</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 技能概览 -->
+                    <div class="max-w-7xl mx-auto px-6 py-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white border border-slate-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-slate-900 mb-2">AI工具栈</h3>
+                                <p class="text-slate-600 text-sm">Midjourney / Runway / ChatGPT / 剪映AI / PS / AI / Canva / PR</p>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-slate-900 mb-2">语言能力</h3>
+                                <p class="text-slate-600 text-sm">英语流利（雅思6+ / CET-6），海外咨询与商务接洽经验</p>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-slate-900 mb-2">核心优势</h3>
+                                <p class="text-slate-600 text-sm">行业研究 / 策略规划 / 创意执行 / 跨部门协同</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 搜索栏 -->
+                    <div class="max-w-7xl mx-auto px-6 py-8">
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 text-xl">🔍</span>
+                            <input type="text" placeholder="搜索职位、公司或技能..." value="${searchTerm}" oninput="updateSearch(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-12 pr-4 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
+                        </div>
+                    </div>
+
+                    <!-- 上传表单 -->
+                    ${showUploadForm ? `
+                        <div class="max-w-7xl mx-auto px-6 pb-8">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-8">
+                                <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                                    <span>📤</span>
+                                    添加新简历
+                                </h2>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-slate-700 font-medium mb-2">职位名称</label>
+                                        <input type="text" placeholder="如：后端工程师" value="${formData.title}" oninput="updateForm('title', this.value)" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-700 font-medium mb-2">目标公司</label>
+                                        <input type="text" placeholder="如：ByteDance" value="${formData.company}" oninput="updateForm('company', this.value)" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-700 font-medium mb-2">日期</label>
+                                        <input type="text" placeholder="2024.01" value="${formData.date}" oninput="updateForm('date', this.value)" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-700 font-medium mb-2">标签（逗号分隔）</label>
+                                        <input type="text" placeholder="Java, 分布式, 微服务" value="${formData.tags}" oninput="updateForm('tags', this.value)" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-slate-700 font-medium mb-2">简介</label>
+                                        <input type="text" placeholder="简短描述这份简历的特点" value="${formData.summary}" oninput="updateForm('summary', this.value)" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-slate-700 font-medium mb-2">职位描述（JD）</label>
+                                        <textarea placeholder="粘贴职位描述..." oninput="updateForm('jd', this.value)" rows="4" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all resize-none">${formData.jd}</textarea>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 mt-6">
+                                    <button onclick="addResume()" class="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-2 rounded-lg font-semibold transition-all">保存简历</button>
+                                    <button onclick="toggleUploadForm()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-900 py-2 rounded-lg font-semibold transition-all">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ""}
+
+                    <!-- 简历卡片网格 -->
+                    <div class="max-w-7xl mx-auto px-6 pb-16">
+                        ${filteredResumes.length === 0 ? `
+                            <div class="text-center py-16">
+                                <div class="text-6xl mb-4">💼</div>
+                                <p class="text-slate-500 text-lg">还没有简历呢，来添加第一份吧！</p>
+                            </div>
+                        ` : `
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                ${filteredResumes.map(resume => `
+                                    <div class="group cursor-pointer h-full">
+                                        <div class="bg-white border-2 border-slate-200 rounded-xl p-6 h-full flex flex-col justify-between transform transition-all duration-300 hover:border-slate-400 hover:shadow-lg hover:-translate-y-1" onclick="selectResume(${resume.id})">
+                                            <div>
+                                                <div class="flex items-start justify-between mb-4">
+                                                    <div>
+                                                        <h3 class="text-xl font-bold text-slate-900 mb-1">${resume.title}</h3>
+                                                        <p class="text-slate-600 text-sm">${resume.company}</p>
+                                                    </div>
+                                                    <span class="text-2xl">📄</span>
+                                                </div>
+                                                <p class="text-slate-600 text-sm mb-4 line-clamp-2">${resume.summary}</p>
+                                                <div class="flex flex-wrap gap-2">
+                                                    ${resume.tags.map(tag => `<span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">${tag}</span>`).join("")}
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-between mt-6 pt-4 border-t border-slate-200">
+                                                <span class="text-sm text-slate-500 flex items-center gap-1">
+                                                    📅
+                                                    ${resume.date}
+                                                </span>
+                                                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <button onclick="event.stopPropagation(); shareResume(${resume.id})" class="p-2 hover:bg-slate-100 rounded-lg transition-all text-slate-600 text-lg" title="分享">📤</button>
+                                                    <button onclick="event.stopPropagation(); deleteResume(${resume.id})" class="p-2 hover:bg-red-50 rounded-lg transition-all text-slate-600 hover:text-red-600 text-lg" title="删除">🗑️</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join("")}
+                            </div>
+                        `}
+                    </div>
+
+                    <!-- 详情面板 -->
+                    ${selectedResume ? `
+                        <div class="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center p-4 z-50" onclick="if(event.target === this) selectResume(null)">
+                            <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl border border-slate-200" onclick="event.stopPropagation()">
+                                <!-- 头部 -->
+                                <div class="bg-slate-50 p-8 border-b border-slate-200 flex items-start justify-between sticky top-0">
+                                    <div>
+                                        <h2 class="text-3xl font-bold text-slate-900 mb-2">${selectedResume.title}</h2>
+                                        <p class="text-lg text-slate-600">🏢 ${selectedResume.company}</p>
+                                    </div>
+                                    <button onclick="selectResume(null)" class="p-2 hover:bg-slate-200 rounded-lg transition-all text-slate-600 text-2xl">✕</button>
+                                </div>
+
+                                <!-- 内容 -->
+                                <div class="p-8">
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">简介</h3>
+                                        <p class="text-slate-600">${selectedResume.summary}</p>
+                                    </div>
+
+                                    <!-- 职位描述图片展示 -->
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述图片</h3>
+                                        <div class="image-gallery">
+                                            ${selectedResume.images.map((img, idx) => `
+                                                <div class="image-item">
+                                                    <img src="${img}" alt="职位描述图片 ${idx + 1}" onerror="this.parentElement.innerHTML='<div style=\\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:12px;\\">图片暂未上传</div>'">
+                                                </div>
+                                            `).join("")}
+                                        </div>
+                                        <p class="text-slate-500 text-sm mt-2">💡 提示：这里应该放职位描述的相关截图或宣传图片</p>
+                                    </div>
+
+                                    <!-- PDF下载区域 -->
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">简历PDF</h3>
+                                        <div class="pdf-section">
+                                            <p class="text-slate-600 mb-3">📄 ${selectedResume.pdfName}</p>
+                                            <a href="${selectedResume.pdfUrl}" class="pdf-download-btn">
+                                                📥 下载简历PDF
+                                            </a>
+                                            <p class="text-slate-500 text-sm mt-3">💡 提示：点击按钮可下载对应岗位的简历PDF文件</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">技能标签</h3>
+                                        <div class="flex flex-wrap gap-2">
+                                            ${selectedResume.tags.map(tag => `<span class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium">${tag}</span>`).join("")}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述</h3>
+                                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 text-slate-600 whitespace-pre-wrap font-mono text-sm max-h-60 overflow-y-auto">
+                                            ${selectedResume.jd}
+                                        </div>
+                                    </div>
+
+                                    <div class="flex gap-4">
+                                        <button onclick="shareResume(${selectedResume.id})" class="flex-1 flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-lg font-semibold transition-all">
+                                            📤
+                                            分享这份简历
+                                        </button>
+                                        <button onclick="selectResume(null)" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-900 py-3 rounded-lg font-semibold transition-all">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ""}
+                </div>
+            `;
+        }
+
+        // 事件处理函数
+        function toggleUploadForm() {
+            showUploadForm = !showUploadForm;
+            render();
+        }
+
+        function updateSearch(value) {
+            searchTerm = value;
+            render();
+        }
+
+        function updateForm(field, value) {
+            formData[field] = value;
+        }
+
+        function addResume() {
+            if (formData.title && formData.company) {
+                const newId = Math.max(...resumes.map(r => r.id), 0) + 1;
+                resumes.push({
+                    id: newId,
+                    title: formData.title,
+                    company: formData.company,
+                    date: formData.date,
+                    summary: formData.summary,
+                    jd: formData.jd,
+                    tags: formData.tags.split(",").map(t => t.trim()).filter(t => t),
+                    images: ["https://via.placeholder.com/600x400?text=Image+1"],
+                    pdfUrl: "#",
+                    pdfName: "resume.pdf"
+                });
+                formData = { title: "", company: "", date: "", summary: "", jd: "", tags: "" };
+                showUploadForm = false;
+                render();
+            }
+        }
+
+        function selectResume(id) {
+            selectedResume = id ? resumes.find(r => r.id === id) : null;
+            render();
+        }
+
+        function deleteResume(id) {
+            resumes = resumes.filter(r => r.id !== id);
+            if (selectedResume?.id === id) {
+                selectedResume = null;
+            }
+            render();
+        }
+
+        function shareResume(id) {
+            const resume = resumes.find(r => r.id === id);
+            if (resume) {
+                const shareText = `我的${resume.title}简历版本 - ${resume.company} | ${resume.summary}`;
+                if (navigator.share) {
+                    navigator.share({
+                        title: "简历展示",
+                        text: shareText
+                    }).catch(() => {});
+                } else {
+                    alert(`分享链接：${window.location.href}\n\n${shareText}`);
+                }
+            }
+        }
+
+        // 初始渲染
+        render();
+    </script>
+</body>
+</html>
