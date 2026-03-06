@@ -1,34 +1,55 @@
 {
   "name": "anna-resume",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+  "version": "2.0.0",
+  "description": "My Professional Resume Showcase - A modern, responsive resume website showcasing different career directions with image galleries and PDF downloads",
+  "author": {
+    "name": "Anna Cheng (程安安)",
+    "email": "buanancheng@gmail.com",
+    "url": "https://anna-resume.vercel.app"
   },
+  "license": "MIT",
+  "homepage": "https://anna-resume.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dafffodil/anna-resume.git"
+  },
+  "keywords": [
+    "resume",
+    "portfolio",
+    "showcase",
+    "career",
+    "html",
+    "css",
+    "javascript",
+    "responsive",
+    "vercel"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npx http-server -p 8080",
+    "dev": "npx live-server",
+    "build": "echo 'No build step needed for static HTML'",
+    "test": "echo 'No tests configured'",
+    "serve": "python -m http.server 8000"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "files": [
+    "index.html",
+    "src/",
+    "public/",
+    "README.md",
+    "LICENSE"
+  ]
 }
