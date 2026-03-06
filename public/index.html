@@ -12,6 +12,48 @@
         * {
             box-sizing: border-box;
         }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .image-item {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .pdf-section {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .pdf-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin: 8px;
+        }
+        .pdf-download-btn:hover {
+            background: #0f172a;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -36,7 +78,14 @@
 - 商业化策略制定
 - 平台级项目管理
 - 跨部门协同`,
-                tags: ["AI商业化", "策略运营", "行业研究", "AIGC"]
+                tags: ["AI商业化", "策略运营", "行业研究", "AIGC"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+1",
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+2",
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+3"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_AI_Product_ByteDance.pdf"
             },
             {
                 id: 2,
@@ -55,7 +104,14 @@
 - AI内容生产（Midjourney、Runway）
 - 品牌跨界合作
 - 社群生态运营`,
-                tags: ["品牌运营", "AI创意", "项目管理", "内容策划"]
+                tags: ["品牌运营", "AI创意", "项目管理", "内容策划"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+1",
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+2",
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+3"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_Brand_Marketing_ArtCenter.pdf"
             },
             {
                 id: 3,
@@ -74,11 +130,18 @@
 - 市场研究
 - 方案设计
 - 行业趋势判断`,
-                tags: ["战略咨询", "市场研究", "AI教育", "商业分析"]
+                tags: ["战略咨询", "市场研究", "AI教育", "商业分析"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+1",
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+2",
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+3"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_Strategy_Consulting_ZhaoshiYuan.pdf"
             },
             {
                 id: 4,
-                title: "硕士研究生｜广告学（品牌传播方向）",
+                title: "硕士研究生 | 广告学（品牌传播方向）",
                 company: "中国传媒大学",
                 date: "2021.09 - 2024.06",
                 summary: "双一流学科排名A+，深耕品牌传播理论与实践研究",
@@ -87,7 +150,13 @@
 研究方向：品牌传播、数字营销、AI与创意
 
 学术背景为后续从事品牌运营、营销策略、产品运营等工作奠定了坚实的理论与实践基础`,
-                tags: ["品牌传播", "广告学", "双一流", "学术研究"]
+                tags: ["品牌传播", "广告学", "双一流", "学术研究"],
+                images: [
+                    "https://via.placeholder.com/600x400?text=CUC+Master+1",
+                    "https://via.placeholder.com/600x400?text=CUC+Master+2"
+                ],
+                pdfUrl: "#",
+                pdfName: "resume_Master_CUC.pdf"
             }
         ];
 
@@ -229,7 +298,7 @@
                                                 <div class="flex items-start justify-between mb-4">
                                                     <div>
                                                         <h3 class="text-xl font-bold text-slate-900 mb-1">${resume.title}</h3>
-                                                        <p class="text-slate-600">${resume.company}</p>
+                                                        <p class="text-slate-600 text-sm">${resume.company}</p>
                                                     </div>
                                                     <span class="text-2xl">📄</span>
                                                 </div>
@@ -258,12 +327,12 @@
                     <!-- 详情面板 -->
                     ${selectedResume ? `
                         <div class="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center p-4 z-50" onclick="if(event.target === this) selectResume(null)">
-                            <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-xl border border-slate-200" onclick="event.stopPropagation()">
+                            <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl border border-slate-200" onclick="event.stopPropagation()">
                                 <!-- 头部 -->
-                                <div class="bg-slate-50 p-8 border-b border-slate-200 flex items-start justify-between">
+                                <div class="bg-slate-50 p-8 border-b border-slate-200 flex items-start justify-between sticky top-0">
                                     <div>
                                         <h2 class="text-3xl font-bold text-slate-900 mb-2">${selectedResume.title}</h2>
-                                        <p class="text-lg text-slate-600">${selectedResume.company}</p>
+                                        <p class="text-lg text-slate-600">🏢 ${selectedResume.company}</p>
                                     </div>
                                     <button onclick="selectResume(null)" class="p-2 hover:bg-slate-200 rounded-lg transition-all text-slate-600 text-2xl">✕</button>
                                 </div>
@@ -273,6 +342,31 @@
                                     <div class="mb-8">
                                         <h3 class="text-lg font-bold text-slate-900 mb-3">简介</h3>
                                         <p class="text-slate-600">${selectedResume.summary}</p>
+                                    </div>
+
+                                    <!-- 职位描述图片展示 -->
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述图片</h3>
+                                        <div class="image-gallery">
+                                            ${selectedResume.images.map((img, idx) => `
+                                                <div class="image-item">
+                                                    <img src="${img}" alt="职位描述图片 ${idx + 1}" onerror="this.parentElement.innerHTML='<div style=\\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:12px;\\">图片暂未上传</div>'">
+                                                </div>
+                                            `).join("")}
+                                        </div>
+                                        <p class="text-slate-500 text-sm mt-2">💡 提示：这里应该放职位描述的相关截图或宣传图片</p>
+                                    </div>
+
+                                    <!-- PDF下载区域 -->
+                                    <div class="mb-8">
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">简历PDF</h3>
+                                        <div class="pdf-section">
+                                            <p class="text-slate-600 mb-3">📄 ${selectedResume.pdfName}</p>
+                                            <a href="${selectedResume.pdfUrl}" class="pdf-download-btn">
+                                                📥 下载简历PDF
+                                            </a>
+                                            <p class="text-slate-500 text-sm mt-3">💡 提示：点击按钮可下载对应岗位的简历PDF文件</p>
+                                        </div>
                                     </div>
 
                                     <div class="mb-8">
@@ -329,7 +423,10 @@
                     date: formData.date,
                     summary: formData.summary,
                     jd: formData.jd,
-                    tags: formData.tags.split(",").map(t => t.trim()).filter(t => t)
+                    tags: formData.tags.split(",").map(t => t.trim()).filter(t => t),
+                    images: ["https://via.placeholder.com/600x400?text=Image+1"],
+                    pdfUrl: "#",
+                    pdfName: "resume.pdf"
                 });
                 formData = { title: "", company: "", date: "", summary: "", jd: "", tags: "" };
                 showUploadForm = false;
