@@ -1,0 +1,11 @@
+/* 自定义样式可以放在这里 */
+/* 现在用 Tailwind CSS，这个文件可选 */
+
+:root {
+  --primary-color: #1e293b;
+  --secondary-color: #64748b;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+}
+
+/* 可以在这里添加自定义样式 */
