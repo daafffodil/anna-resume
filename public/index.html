@@ -14,11 +14,13 @@
         }
         .image-gallery {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 16px;
             margin: 16px 0;
         }
         .image-item {
             width: 100%;
+            height: 200px;
             border-radius: 8px;
             border: 2px solid #e2e8f0;
             overflow: hidden;
@@ -26,15 +28,14 @@
         }
         .image-item img {
             width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
         }
         .pdf-section {
             background: #f8fafc;
-            border: 2px solid #94a3b8;
+            border: 2px dashed #cbd5e1;
             border-radius: 8px;
-            padding: 24px;
+            padding: 16px;
             margin: 16px 0;
             text-align: center;
         }
@@ -44,38 +45,14 @@
             gap: 8px;
             background: #1e293b;
             color: white;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: background 0.3s;
             margin: 8px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
         }
         .pdf-download-btn:hover {
             background: #0f172a;
-            transform: translateY(-2px);
-        }
-        .intro-box {
-            background: #f1f5f9;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .modal-content {
-            max-height: calc(100vh - 200px);
-            overflow-y: auto;
-        }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
     </style>
 </head>
@@ -83,7 +60,7 @@
     <div id="app"></div>
 
     <script>
-        // 初始化数据 - 改进版本
+        // 初始化数据
         let resumes = [
             {
                 id: 1,
@@ -91,14 +68,6 @@
                 company: "字节跳动 / 小红书",
                 date: "2024.06 - 至今",
                 summary: "AI商业化研究与AIGC行业深度调研，系统梳理AI技术B端落地应用场景",
-                intro: `岗位介绍：
-本职位涉及AI商业化研究和行业分析。主要工作包括：
-• 调研AIGC行业趋势
-• 分析AI技术的B端应用
-• 为业务方提供策略支持
-• 参与重点项目的推进
-
-该职位适合有研究能力、能独立思考的候选人。`,
                 jd: `工作职责：
 • AI商业化研究：主导火山引擎AIGC行业深度调研，系统梳理AI技术在B端商业化落地的应用场景，为业务方提供技术趋势与竞品分析支持。
 • 平台策略输出：为字节跳动（巨量引擎、抖音生活服务）、小红书提供商业化策略支持，主导编写《小红书线索经营通案》、《千帆推广通案》等官方标准课件，赋能全量销售团队与广告主。
@@ -111,8 +80,9 @@
 - 跨部门协同`,
                 tags: ["AI商业化", "策略运营", "行业研究", "AIGC"],
                 images: [
-                    "https://via.placeholder.com/800x600?text=ByteDance+Strategy+1",
-                    "https://via.placeholder.com/900x500?text=ByteDance+Strategy+2"
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+1",
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+2",
+                    "https://via.placeholder.com/600x400?text=ByteDance+AI+Strategy+3"
                 ],
                 pdfUrl: "#",
                 pdfName: "resume_AI_Product_ByteDance.pdf"
@@ -123,14 +93,6 @@
                 company: "山中天艺术中心",
                 date: "2024.05 - 2025.05",
                 summary: "AI+艺术跨界策划，敏锐捕捉技术趋势，策划AI艺术展览，提升Gen-Z影响力",
-                intro: `岗位介绍：
-这是一个融合艺术与技术的创意岗位。主要工作包括：
-• AI艺术展览策划
-• 跨界合作协调
-• 品牌文化IP打造
-• 社群生态建设
-
-需要具有创意思维和跨界思维的候选人。`,
                 jd: `工作职责：
 • AI+艺术跨界：敏锐捕捉AI艺术创作趋势，策划并执行AI技术相关艺术展览，将前沿技术转化为可感知的品牌文化IP
 • 全链路AI产出：主导利用Midjourney、Runway等AIGC工具完成从策略、创意到海报及AI动画视频的全流程制作
@@ -144,10 +106,9 @@
 - 社群生态运营`,
                 tags: ["品牌运营", "AI创意", "项目管理", "内容策划"],
                 images: [
-                    "https://via.placeholder.com/700x500?text=Art+Center+1",
-                    "https://via.placeholder.com/600x400?text=Art+Center+2",
-                    "https://via.placeholder.com/800x600?text=Art+Center+3",
-                    "https://via.placeholder.com/900x500?text=Art+Center+4"
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+1",
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+2",
+                    "https://via.placeholder.com/600x400?text=Art+Center+Brand+3"
                 ],
                 pdfUrl: "#",
                 pdfName: "resume_Brand_Marketing_ArtCenter.pdf"
@@ -158,14 +119,6 @@
                 company: "兆世原咨询机构",
                 date: "2024.06 - 至今",
                 summary: "战略咨询与行业研究，深度分析行业趋势，为企业提供商业化落地方案",
-                intro: `岗位介绍：
-作为战略咨询顾问，需要：
-• 进行深度的行业研究
-• 分析市场机会和挑战
-• 提出切实可行的建议
-• 支持客户的决策
-
-要求思维严谨、分析能力强。`,
                 jd: `工作职责：
 • 行业深度研究：针对青少年AI教育赛道进行深度市场扫描，分析AI技术在科普教育场景下的交互潜力与商业化路径
 • 方案设计：产出详尽的展厅升级与教育产品方案，体现对AI领域趋势的精准判断及复杂项目的全局规划能力
@@ -179,7 +132,9 @@
 - 行业趋势判断`,
                 tags: ["战略咨询", "市场研究", "AI教育", "商业分析"],
                 images: [
-                    "https://via.placeholder.com/1000x600?text=Consulting+1"
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+1",
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+2",
+                    "https://via.placeholder.com/600x400?text=Strategy+Consulting+3"
                 ],
                 pdfUrl: "#",
                 pdfName: "resume_Strategy_Consulting_ZhaoshiYuan.pdf"
@@ -190,22 +145,15 @@
                 company: "中国传媒大学",
                 date: "2021.09 - 2024.06",
                 summary: "双一流学科排名A+，深耕品牌传播理论与实践研究",
-                intro: `学位介绍：
-中国传媒大学广告学专业硕士学位：
-• 学科排名：A+（双一流建设学科）
-• 研究方向：品牌传播、数字营销、AI与创意
-• 论文研究：品牌传播理论与实践
-
-为从事营销、运营等工作奠定坚实基础。`,
-                jd: `学位信息：
-学位：广告学硕士（品牌传播方向）
+                jd: `学位：广告学硕士（品牌传播方向）
 学校：中国传媒大学（双一流，学科排名A+）
 研究方向：品牌传播、数字营销、AI与创意
 
 学术背景为后续从事品牌运营、营销策略、产品运营等工作奠定了坚实的理论与实践基础`,
                 tags: ["品牌传播", "广告学", "双一流", "学术研究"],
                 images: [
-                    "https://via.placeholder.com/800x400?text=CUC+Master+Degree"
+                    "https://via.placeholder.com/600x400?text=CUC+Master+1",
+                    "https://via.placeholder.com/600x400?text=CUC+Master+2"
                 ],
                 pdfUrl: "#",
                 pdfName: "resume_Master_CUC.pdf"
@@ -220,7 +168,6 @@
             company: "",
             date: "",
             summary: "",
-            intro: "",
             jd: "",
             tags: ""
         };
@@ -323,10 +270,6 @@
                                         <input type="text" placeholder="简短描述这份简历的特点" value="${formData.summary}" oninput="updateForm('summary', this.value)" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all">
                                     </div>
                                     <div class="md:col-span-2">
-                                        <label class="block text-slate-700 font-medium mb-2">职位介绍（文字版）</label>
-                                        <textarea placeholder="输入职位的文字介绍，比如：职位描述、岗位要求等" oninput="updateForm('intro', this.value)" rows="3" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all resize-none">${formData.intro}</textarea>
-                                    </div>
-                                    <div class="md:col-span-2">
                                         <label class="block text-slate-700 font-medium mb-2">职位描述（JD）</label>
                                         <textarea placeholder="粘贴职位描述..." oninput="updateForm('jd', this.value)" rows="4" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all resize-none">${formData.jd}</textarea>
                                     </div>
@@ -355,7 +298,7 @@
                                                 <div class="flex items-start justify-between mb-4">
                                                     <div>
                                                         <h3 class="text-xl font-bold text-slate-900 mb-1">${resume.title}</h3>
-                                                        <p class="text-slate-600 text-sm">🏢 ${resume.company}</p>
+                                                        <p class="text-slate-600 text-sm">${resume.company}</p>
                                                     </div>
                                                     <span class="text-2xl">📄</span>
                                                 </div>
@@ -384,66 +327,45 @@
                     <!-- 详情面板 -->
                     ${selectedResume ? `
                         <div class="fixed inset-0 bg-black/10 backdrop-blur-sm flex items-center justify-center p-4 z-50" onclick="if(event.target === this) selectResume(null)">
-                            <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-xl border border-slate-200 flex flex-col" onclick="event.stopPropagation()">
+                            <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-xl border border-slate-200" onclick="event.stopPropagation()">
                                 <!-- 头部 -->
-                                <div class="bg-slate-50 p-8 border-b border-slate-200 flex items-start justify-between flex-shrink-0">
+                                <div class="bg-slate-50 p-8 border-b border-slate-200 flex items-start justify-between sticky top-0">
                                     <div>
                                         <h2 class="text-3xl font-bold text-slate-900 mb-2">${selectedResume.title}</h2>
                                         <p class="text-lg text-slate-600">🏢 ${selectedResume.company}</p>
                                     </div>
-                                    <button onclick="selectResume(null)" class="p-2 hover:bg-slate-200 rounded-lg transition-all text-slate-600 text-2xl flex-shrink-0">✕</button>
+                                    <button onclick="selectResume(null)" class="p-2 hover:bg-slate-200 rounded-lg transition-all text-slate-600 text-2xl">✕</button>
                                 </div>
 
-                                <!-- 滚动内容区 -->
-                                <div class="modal-content p-8 flex-1">
+                                <!-- 内容 -->
+                                <div class="p-8">
                                     <div class="mb-8">
                                         <h3 class="text-lg font-bold text-slate-900 mb-3">简介</h3>
                                         <p class="text-slate-600">${selectedResume.summary}</p>
                                     </div>
 
-                                    <!-- 职位介绍 - 新增 -->
+                                    <!-- 职位描述图片展示 -->
                                     <div class="mb-8">
-                                        <h3 class="text-lg font-bold text-slate-900 mb-3">岗位介绍</h3>
-                                        <div class="intro-box">
-                                            ${selectedResume.intro}
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述图片</h3>
+                                        <div class="image-gallery">
+                                            ${selectedResume.images.map((img, idx) => `
+                                                <div class="image-item">
+                                                    <img src="${img}" alt="职位描述图片 ${idx + 1}" onerror="this.parentElement.innerHTML='<div style=\\"width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:12px;\\">图片暂未上传</div>'">
+                                                </div>
+                                            `).join("")}
                                         </div>
+                                        <p class="text-slate-500 text-sm mt-2">💡 提示：这里应该放职位描述的相关截图或宣传图片</p>
                                     </div>
 
-                                    <!-- 职位描述图片展示 - 改进 -->
-                                    ${selectedResume.images && selectedResume.images.length > 0 ? `
-                                        <div class="mb-8">
-                                            <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述图片 (${selectedResume.images.length})</h3>
-                                            <div class="image-gallery">
-                                                ${selectedResume.images.map((img, idx) => `
-                                                    <div class="image-item">
-                                                        <img src="${img}" alt="职位描述图片 ${idx + 1}" onerror="this.parentElement.innerHTML='<div style=\\"width:100%;padding:20px;text-align:center;color:#94a3b8;\\">图片加载失败，请检查图片链接</div>'">
-                                                    </div>
-                                                `).join("")}
-                                            </div>
-                                        </div>
-                                    ` : `
-                                        <div class="mb-8">
-                                            <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述图片</h3>
-                                            <div class="bg-slate-50 border-2 dashed border-slate-300 rounded-lg p-8 text-center text-slate-500">
-                                                暂无图片
-                                            </div>
-                                        </div>
-                                    `}
-
-                                    <!-- 简历PDF下载 - 改进 -->
+                                    <!-- PDF下载区域 -->
                                     <div class="mb-8">
                                         <h3 class="text-lg font-bold text-slate-900 mb-3">简历PDF</h3>
                                         <div class="pdf-section">
-                                            <p class="text-slate-600 font-semibold mb-4">📄 ${selectedResume.pdfName}</p>
-                                            ${selectedResume.pdfUrl && selectedResume.pdfUrl !== "#" ? `
-                                                <a href="${selectedResume.pdfUrl}" target="_blank" download class="pdf-download-btn">
-                                                    📥 下载简历PDF
-                                                </a>
-                                            ` : `
-                                                <div class="text-slate-400 text-sm py-2">
-                                                    💡 PDF暂未配置，请联系管理员
-                                                </div>
-                                            `}
+                                            <p class="text-slate-600 mb-3">📄 ${selectedResume.pdfName}</p>
+                                            <a href="${selectedResume.pdfUrl}" class="pdf-download-btn">
+                                                📥 下载简历PDF
+                                            </a>
+                                            <p class="text-slate-500 text-sm mt-3">💡 提示：点击按钮可下载对应岗位的简历PDF文件</p>
                                         </div>
                                     </div>
 
@@ -455,20 +377,19 @@
                                     </div>
 
                                     <div class="mb-8">
-                                        <h3 class="text-lg font-bold text-slate-900 mb-3">工作职责</h3>
+                                        <h3 class="text-lg font-bold text-slate-900 mb-3">职位描述</h3>
                                         <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 text-slate-600 whitespace-pre-wrap font-mono text-sm max-h-60 overflow-y-auto">
                                             ${selectedResume.jd}
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- 页脚按钮 -->
-                                <div class="bg-slate-50 border-t border-slate-200 p-8 flex gap-4 flex-shrink-0">
-                                    <button onclick="shareResume(${selectedResume.id})" class="flex-1 flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-lg font-semibold transition-all">
-                                        📤
-                                        分享这份简历
-                                    </button>
-                                    <button onclick="selectResume(null)" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-900 py-3 rounded-lg font-semibold transition-all">关闭</button>
+                                    <div class="flex gap-4">
+                                        <button onclick="shareResume(${selectedResume.id})" class="flex-1 flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-lg font-semibold transition-all">
+                                            📤
+                                            分享这份简历
+                                        </button>
+                                        <button onclick="selectResume(null)" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-900 py-3 rounded-lg font-semibold transition-all">关闭</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -501,14 +422,13 @@
                     company: formData.company,
                     date: formData.date,
                     summary: formData.summary,
-                    intro: formData.intro,
                     jd: formData.jd,
                     tags: formData.tags.split(",").map(t => t.trim()).filter(t => t),
-                    images: [],
+                    images: ["https://via.placeholder.com/600x400?text=Image+1"],
                     pdfUrl: "#",
                     pdfName: "resume.pdf"
                 });
-                formData = { title: "", company: "", date: "", summary: "", intro: "", jd: "", tags: "" };
+                formData = { title: "", company: "", date: "", summary: "", jd: "", tags: "" };
                 showUploadForm = false;
                 render();
             }
